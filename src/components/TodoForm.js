@@ -57,6 +57,7 @@ class TodoForm extends React.Component {
               onChange={this.handleChanges}
             />
           </InputGroup>
+          <Button type="submit">Submit</Button>
         </Form>
       </div>
     );

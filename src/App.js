@@ -54,6 +54,8 @@ class App extends React.Component {
     super();
     this.state = {
       todos: todoData,
+      searchTerm: "",
+      searchResults: todoData,
     };
   }
 
@@ -93,8 +95,32 @@ class App extends React.Component {
       }),
     });
   };
+  // componentDidMount() {
+  //   this.setState({ searchResults: this.state.todos, searchTerm: "" });
+
+  //   console.log("i am cdm");
+  // }
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log("i am cdu", prevState.searchTerm, this.state.searchTerm);
+  //   if (prevState.searchTerm !== this.state.searchTerm) {
+  //     let results = this.state.todos.filter((item) => {
+  //       return item.task
+  //         .toLowerCase()
+  //         .includes(this.state.searchTerm.toLowerCase());
+  //     });
+  //     this.setState({ searchResults: results });
+  //   }
+  // }
+
+  // handleFormChange = (event) => {
+  //   this.setState({ searchTerm: event.target.value });
+  //   console.log("searchTerm", this.state.searchTerm);
+
+  // };
 
   render() {
+    console.log("i am render");
+    console.log("searchResults", this.state.searchResults);
     return (
       <div>
         <Navbar
@@ -102,18 +128,22 @@ class App extends React.Component {
           style={{ height: "5rem" }}
         >
           <TodoForm addTodo={this.addTodo} />
+          {/** 
 
           <Form inline>
             <FormControl
               type="text"
               placeholder="Search"
               className=" mr-sm-2"
+              onChange={this.handleFormChange}
             />
-            <Button type="submit">Submit</Button>
+            <Button type="submit">List of tasks</Button>
           </Form>
+*/}
         </Navbar>
 
         <TodoList
+          //searchResults={this.state.searchResults}
           todos={this.state.todos}
           toggleTodosDone={this.toggleTodosDone}
           clearTodosDone={this.clearTodosDone}
@@ -126,3 +156,77 @@ class App extends React.Component {
 export default App;
 
 //onChange={handleSearchChange}
+
+// class App extends React.Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       todos: todoData,
+//     };
+//   }
+
+//   toggleTodosDone = (itemId) => {
+//     console.log("bk: index.js: App: toggletodosDone: itemId: ", itemId);
+//     this.setState({
+//       todos: this.state.todos.map((item) => {
+//         if (item.id === itemId) {
+//           return {
+//             ...item,
+//             completed: !item.completed,
+//           };
+//         }
+//         return item;
+//       }),
+//     });
+//   };
+
+//   addTodo = (itemName) => {
+//     this.setState({
+//       todos: [
+//         ...this.state.todos,
+//         {
+//           task: itemName,
+//           completed: false,
+//           id: Date.now(),
+//         },
+//       ],
+//     });
+//   };
+
+//   clearTodosDone = () => {
+//     console.log("bk: index.js: App: clearTodosDone");
+//     this.setState({
+//       todos: this.state.todos.filter((item) => {
+//         return !item.completed;
+//       }),
+//     });
+//   };
+
+//   render() {
+//     return (
+//       <div>
+//         <Navbar
+//           className="bg-dark justify-content-around"
+//           style={{ height: "5rem" }}
+//         >
+//           <TodoForm addTodo={this.addTodo} />
+
+//           <Form inline>
+//             <FormControl
+//               type="text"
+//               placeholder="Search"
+//               className=" mr-sm-2"
+//             />
+//             <Button type="submit">Submit</Button>
+//           </Form>
+//         </Navbar>
+
+//         <TodoList
+//           todos={this.state.todos}
+//           toggleTodosDone={this.toggleTodosDone}
+//           clearTodosDone={this.clearTodosDone}
+//         />
+//       </div>
+//     );
+//   }
+// }
