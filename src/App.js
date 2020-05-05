@@ -112,11 +112,10 @@ class App extends React.Component {
   //   }
   // }
 
-  // handleFormChange = (event) => {
-  //   this.setState({ searchTerm: event.target.value });
-  //   console.log("searchTerm", this.state.searchTerm);
-
-  // };
+  handleFormChange = (event) => {
+    this.setState({ searchTerm: event.target.value });
+    console.log("searchTerm", this.state.searchTerm);
+  };
 
   render() {
     console.log("i am render");
@@ -128,7 +127,6 @@ class App extends React.Component {
           style={{ height: "5rem" }}
         >
           <TodoForm addTodo={this.addTodo} />
-          {/** 
 
           <Form inline>
             <FormControl
@@ -137,14 +135,13 @@ class App extends React.Component {
               className=" mr-sm-2"
               onChange={this.handleFormChange}
             />
-            <Button type="submit">List of tasks</Button>
           </Form>
-*/}
         </Navbar>
 
         <TodoList
           //searchResults={this.state.searchResults}
           todos={this.state.todos}
+          searchTerm={this.state.searchTerm}
           toggleTodosDone={this.toggleTodosDone}
           clearTodosDone={this.clearTodosDone}
         />

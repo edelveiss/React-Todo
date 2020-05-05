@@ -9,13 +9,19 @@ const TodoList = (props) => {
   return (
     <Container style={{ width: "100%", marginTop: "5rem" }}>
       <Row>
-        {props.todos.map((item) => (
-          <Todo
-            key={item.id}
-            item={item}
-            toggleTodosDone={props.toggleTodosDone}
-          />
-        ))}
+        {props.todos
+          .filter((item) => {
+            return item.task
+              .toLowerCase()
+              .includes(props.searchTerm.toLowerCase());
+          })
+          .map((item) => (
+            <Todo
+              key={item.id}
+              item={item}
+              toggleTodosDone={props.toggleTodosDone}
+            />
+          ))}
       </Row>
       <Row className="button-wrapper">
         <Button
@@ -30,3 +36,28 @@ const TodoList = (props) => {
   );
 };
 export default TodoList;
+
+// const TodoList = (props) => {
+//     return (
+//       <Container style={{ width: "100%", marginTop: "5rem" }}>
+//         <Row>
+//           {props.todos.map((item) => (
+//             <Todo
+//               key={item.id}
+//               item={item}
+//               toggleTodosDone={props.toggleTodosDone}
+//             />
+//           ))}
+//         </Row>
+//         <Row className="button-wrapper">
+//           <Button
+//             className="btnComplete"
+//             onClick={props.clearTodosDone}
+//             color="warning"
+//           >
+//             Clear Completed
+//           </Button>
+//         </Row>
+//       </Container>
+//     );
+//   };
