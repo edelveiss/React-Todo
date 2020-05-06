@@ -20,11 +20,18 @@ class TodoForm extends React.Component {
     super(props);
     this.state = {
       itemName: "",
+      buttonDisabled: true,
     };
   }
 
   handleChanges = (e) => {
     // update state with each keystroke
+
+    // if (this.state.itemName) {
+    //   this.setState({ buttonDisabled: false });
+    // } else {
+    //   this.setState({ buttonDisabled: true });
+    // }
     this.setState({ itemName: e.target.value });
   };
 
@@ -50,14 +57,22 @@ class TodoForm extends React.Component {
             </InputGroup.Prepend>
 
             <FormControl
-              placeholder="Username"
+              placeholder="Enter todo"
               aria-label="Username"
               aria-describedby="basic-addon1"
               value={this.state.itemName}
               onChange={this.handleChanges}
             />
           </InputGroup>
-          <Button type="submit">Submit</Button>
+          {this.state.itemName ? (
+            <Button disabled={!this.state.buttonDisabled} type="submit">
+              Submit
+            </Button>
+          ) : (
+            <Button disabled={this.state.buttonDisabled} type="submit">
+              Submit
+            </Button>
+          )}
         </Form>
       </div>
     );
