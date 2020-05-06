@@ -64,18 +64,30 @@ class TodoForm extends React.Component {
               onChange={this.handleChanges}
             />
           </InputGroup>
-          {this.state.itemName ? (
-            <Button disabled={!this.state.buttonDisabled} type="submit">
-              Submit
-            </Button>
-          ) : (
-            <Button disabled={this.state.buttonDisabled} type="submit">
-              Submit
-            </Button>
-          )}
+
+          <Button
+            disabled={
+              this.state.itemName
+                ? !this.state.buttonDisabled
+                : this.state.buttonDisabled
+            }
+            type="submit"
+          >
+            Submit
+          </Button>
         </Form>
       </div>
     );
   }
 }
 export default TodoForm;
+
+// {this.state.itemName ? (
+//     <Button disabled={!this.state.buttonDisabled} type="submit">
+//       Submit
+//     </Button>
+//   ) : (
+//     <Button disabled={this.state.buttonDisabled} type="submit">
+//       Submit
+//     </Button>
+//   )}
